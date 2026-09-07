@@ -1,0 +1,53 @@
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Float32MultiArray
+from geometry_msgs.msg import Twist
+
+class Controller_2b(Node):
+
+    def __init__(self) -> None:
+        super().__init__("controller_2b")
+
+        # self.count: int = 0
+        # self.create_timer(2, self.timer_callback)
+
+        self.create_subscription(
+            Float32MultiArray,
+            "/computer/color_filter/side_occupancy",
+            self.sensor_callback,
+            10
+        )
+
+        self.velocity_publisher = self.create_publisher(
+            Twist,
+            "/take/diff_drive_base_controller/cmd_vel_unstamped",
+            10
+        )
+
+    # def timer_callback(self):
+    #     self.get_logger().info(f"Counter: {self.count}")
+    #     self.count += 1
+
+    def sensor_callback(self,msg):
+        left_sensor = msg.data[0]
+        right_sensor = msg.data[1]
+
+        self.get_logger().info(
+            f"Left: {left_sensor:.2f}, Right: {right_sensor:.2f}"
+        )
+
+def main(args=None) -> None:
+
+    rclpy.init(args=args)
+    node = Controller_2b()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == "__main__":
+    main()
