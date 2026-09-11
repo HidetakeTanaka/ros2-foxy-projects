@@ -29,8 +29,36 @@ class Controller_2b(Node):
     #     self.count += 1
 
     def sensor_callback(self,msg):
+
+        # Get sensor values
         left_sensor = msg.data[0]
         right_sensor = msg.data[1]
+
+        # Vehicle_2b: crossed connection
+        linear_gain = 2.0
+        angular_gain = 10.0
+        left_wheel = right_sensor
+        right_wheel = left_sensor 
+
+        # Convert wheel speeds to Twist
+        linear_speed = (left_wheel + right_wheel) / 2.0 * linear_gain
+        angular_speed = (right_wheel - left_wheel) * angular_gain
+
+        # Create velocity command
+        cmd = Twist()
+        cmd.linear.x = linear_speed
+        cmd.angular.z = angular_speed
+
+        # Send command to Foxy
+        self.velocity_publisher.publish(cmd)
+
+        self.get_logger().info(
+            f"Left: {left_sensor:.2f}, "
+            f"Right: {right_sensor:.2f}, "
+            f"Linear: {linear_speed:.2f}, "
+            f"Angular: {angular_speed:.2f}"
+        )
+
 
         self.get_logger().info(
             f"Left: {left_sensor:.2f}, Right: {right_sensor:.2f}"
