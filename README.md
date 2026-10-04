@@ -17,6 +17,73 @@ Demo:
 
 ![Drive Square Demo](drive_square/square_demo.gif)
 
+---
+
+### Braitenberg Vehicles
+
+ROS 2 controllers inspired by Braitenberg Vehicles, using camera and color filtering to generate simple reactive behaviors.
+
+
+#### Vehicle 2a
+
+Vehicle 2a uses direct sensor-to-motor connections.
+
+- Left sensor influences the left wheel
+- Right sensor influences the right wheel
+- Uses camera-based color detection
+- Uses left/right image occupancy values as sensor inputs
+- Publishes 'geometry_msgs/msg/Twist' velocity commands
+
+### Demo
+
+![Braitenberg Vehicle 2a Demo](braitenberg/braitenberg_2a_demo.gif)
+
+--- 
+
+#### Vehicle 2b
+
+Vehicle 2b uses crossed sensor-to-motor connections.
+
+- Left sensor influences the right wheel
+- Right sensor influences the left wheel
+- Uses camera-besed color detection
+- Uses left/right image occupancy values as sensor inputs
+- Publishes 'geometry_msgs/msg/Twist' velocity commands
+
+### Demo
+
+![Braitenberg Vehicle 2a Demo](braitenberg/braitenberg_2b_demo.gif)
+
+---
+
+### Braitenberg Data Flow
+
+Camera  
+↓  
+Color Filter  
+↓  
+Left / Right Occupancy  
+↓  
+Braitenberg Controller  
+↓  
+Twist Velocity Command  
+↓  
+Foxy Robot
+
+
+## Technologies
+
+- ROS2 Humble
+- Python
+- rclpy
+- Gazebo
+- RViz
+- OpenCV
+- ROS 2 Topics
+- Publisher / Subscriber commnucation
+
+
+
 ## Resources
 
 - Foxy Robot repository: https://github.com/EOLab-HSRW/foxy-robot
