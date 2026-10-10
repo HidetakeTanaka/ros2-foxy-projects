@@ -46,7 +46,7 @@ Vehicle 2b uses crossed sensor-to-motor connections.
 
 - Left sensor influences the right wheel
 - Right sensor influences the left wheel
-- Uses camera-besed color detection
+- Uses camera-based color detection
 - Uses left/right image occupancy values as sensor inputs
 - Publishes 'geometry_msgs/msg/Twist' velocity commands
 
@@ -80,7 +80,7 @@ Foxy Robot
 - RViz
 - OpenCV
 - ROS 2 Topics
-- Publisher / Subscriber commnucation
+- Publisher / Subscriber communication 
 
 
 
