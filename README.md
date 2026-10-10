@@ -52,7 +52,7 @@ Vehicle 2b uses crossed sensor-to-motor connections.
 
 ### Demo
 
-![Braitenberg Vehicle 2a Demo](braitenberg/braitenberg_2b_demo.gif)
+![Braitenberg Vehicle 2b Demo](braitenberg/braitenberg_2b_demo.gif)
 
 ---
 
